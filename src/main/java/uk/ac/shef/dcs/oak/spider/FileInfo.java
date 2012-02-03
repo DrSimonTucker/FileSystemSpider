@@ -1,10 +1,8 @@
 package uk.ac.shef.dcs.oak.spider;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.security.DigestInputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -79,13 +77,10 @@ public class FileInfo
             tempDigest.reset();
             DigestInputStream is = new DigestInputStream(new FileInputStream(f), tempDigest);
             is.on(true);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-            for (String line = reader.readLine(); line != null; line = reader.readLine())
-            {
-               // Do nothing
-            }
+            while (is.read() != -1)
+               ;
             md5Contents = Hex.encodeHexString(tempDigest.digest());
-            reader.close();
+            is.close();
 
          }
          catch (NoSuchAlgorithmException e)

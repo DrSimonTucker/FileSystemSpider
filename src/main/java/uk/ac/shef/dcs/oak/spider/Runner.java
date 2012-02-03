@@ -12,7 +12,6 @@ public class Runner
 
       // Get the user root directory
       File root = new File(System.getProperty("user.home"));
-      root = new File("/Users/sat/local/code/fsspider/");
       runner.spider(root);
       runner.close();
    }
@@ -48,7 +47,7 @@ public class Runner
 
    private void process(File f)
    {
-      // System.out.println(f.getAbsolutePath());
+      System.out.println(f.getAbsolutePath());
       FileInfo info = new FileInfo(f);
       ps.println(info);
    }
