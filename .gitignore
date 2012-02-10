@@ -7,3 +7,4 @@ target
 .checkstyle
 *.wav
 *.list
+out.txt

@@ -33,6 +33,7 @@ public class FileInfo
    String[] md5Parents;
    String md5Contents;
    String name;
+   private final int BUFFER_SIZE = 4096;
 
    public FileInfo(File f)
    {
@@ -77,7 +78,8 @@ public class FileInfo
             tempDigest.reset();
             DigestInputStream is = new DigestInputStream(new FileInputStream(f), tempDigest);
             is.on(true);
-            while (is.read() != -1)
+            byte[] buffer = new byte[BUFFER_SIZE];
+            while (is.read(buffer) > 0)
                ;
             md5Contents = Hex.encodeHexString(tempDigest.digest());
             is.close();
